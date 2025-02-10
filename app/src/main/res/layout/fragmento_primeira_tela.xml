@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/lightBlue"
     android:padding="16dp">
 
     <TextView
@@ -11,15 +12,17 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/darkBlue"
         android:text="APP Pegada Carbono"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
     <TextView
-        android:id="@+id/descricaoCurso"
+        android:id="@+id/descricaoApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:padding="10dp"
         android:layout_marginBottom="32dp" />
 
     <com.google.android.material.button.MaterialButton
