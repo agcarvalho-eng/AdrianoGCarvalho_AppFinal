@@ -5,25 +5,25 @@
     <item
         android:id="@+id/menu_inserirPegada"
         android:title="Inserir Pegada"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/insert_footprint"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_listarProdutos"
         android:title="Listar Produtos"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/listar_produtos"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_adicionarProdutos"
         android:title="Adicionar Produtos"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/adicionar_produtos"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_logout"
         android:title="Logout"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:icon="@drawable/logout"
         app:showAsAction="ifRoom" />
 
 </menu>
