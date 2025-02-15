@@ -36,7 +36,7 @@ public class ManipularProdutos {
     public void inserirListaProdutos(Context context) {
 
         // Lendo o string-array do arquivo strings.xml
-        String[] produtos = context.getResources().getStringArray(R.array.produtos); // Array de strings com os produtos
+        String[] produtos = context.getResources().getStringArray(R.array.produtos);
 
         // Iterando sobre as strings do array
         for (int i = 0; i < produtos.length; i++) {

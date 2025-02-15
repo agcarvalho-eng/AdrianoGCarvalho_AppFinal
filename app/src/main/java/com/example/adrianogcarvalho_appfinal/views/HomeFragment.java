@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularPegadas;
 import com.example.adrianogcarvalho_appfinal.controllers.ManipularProdutos;
 import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuarios;
 
@@ -19,6 +20,7 @@ public class HomeFragment extends Fragment {
     private TextView textViewUsuario;
     private ManipularProdutos dbProdutos;
     private ManipularUsuarios dbUsuarios;
+    private ManipularPegadas dbPegadas;
 
     public HomeFragment() {
 
