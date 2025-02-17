@@ -16,6 +16,9 @@ public class Produto {
     @ColumnInfo(name = "valor")
     private double valor;
 
+    // Room exige um construtor padrão
+    public Produto() {}
+
     public Produto(String nome, double valor) {
         this.nome = nome;
         this.valor = valor;

@@ -4,21 +4,25 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "pegadas_carbono")
-public class PegadaCarbono {
+@Entity(tableName = "usuario_produto")
+public class UsuarioProduto {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "valor")
-    private double valor;
-
     @ColumnInfo(name = "id_usuario")
     private int id_usuario;
 
-    public PegadaCarbono(double valor, int id_usuario) {
-        this.valor = valor;
+    @ColumnInfo(name = "id_produto")
+    private double id_produto;
+
+    // Room exige um construtor padrão
+    public UsuarioProduto() {}
+
+
+    public UsuarioProduto(int id_usuario, int id_produto) {
         this.id_usuario = id_usuario;
+        this.id_produto = id_produto;
     }
 
     public int getId() {
@@ -29,19 +33,19 @@ public class PegadaCarbono {
         this.id = id;
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
     public int getId_usuario() {
         return id_usuario;
     }
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public double getId_produto() {
+        return id_produto;
+    }
+
+    public void setId_produto(double id_produto) {
+        this.id_produto = id_produto;
     }
 }

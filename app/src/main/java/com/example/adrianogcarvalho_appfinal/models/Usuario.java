@@ -19,6 +19,9 @@ public class Usuario {
     @ColumnInfo(name = "senha")
     private String senha;
 
+    // Room exige um construtor padrão
+    public Usuario() {}
+
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;

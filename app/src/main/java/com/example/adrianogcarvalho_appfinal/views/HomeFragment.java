@@ -18,9 +18,9 @@ import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuarios;
 
 public class HomeFragment extends Fragment {
     private TextView textViewUsuario;
-    private ManipularProdutos dbProdutos;
-    private ManipularUsuarios dbUsuarios;
-    private ManipularPegadas dbPegadas;
+    //private ManipularProdutos dbProdutos;
+    //private ManipularUsuarios dbUsuarios;
+    //private ManipularPegadas dbPegadas;
 
     public HomeFragment() {
 
@@ -38,9 +38,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // Inicializando a instância de ManipularProdutos
-        dbProdutos = new ManipularProdutos(getContext());
-        // Inserindo a lista de produtos no BD
-        dbProdutos.inserirListaProdutos(getContext());
+        // Habilitando o menu para este fragmento
+        setHasOptionsMenu(true);
+
+        // Configurando a toolbar para que exista apenas neste fragmento
+
+
     }
 }

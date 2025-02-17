@@ -1,18 +1,24 @@
 package com.example.adrianogcarvalho_appfinal.controllers;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Room;
 
 import com.example.adrianogcarvalho_appfinal.R;
 import com.example.adrianogcarvalho_appfinal.models.DAO.ProdutoDao;
+import com.example.adrianogcarvalho_appfinal.models.DAO.UsuarioProdutoDao;
 import com.example.adrianogcarvalho_appfinal.models.MyDatabase;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ManipularProdutos {
     private MyDatabase dbProduto;
     private ProdutoDao produtoDao;
+    private UsuarioProdutoDao usuarioProdutoDao;
 
     public ManipularProdutos(Context context) {
         // Inicializando o BD
@@ -39,18 +45,17 @@ public class ManipularProdutos {
         String[] produtos = context.getResources().getStringArray(R.array.produtos);
 
         // Iterando sobre as strings do array
-        for (int i = 0; i < produtos.length; i++) {
-            // Dividindo cada string para obter a descrição e o valor nutricional
-            String produtoString = produtos[i];
+        for (String produtoString : produtos) {
+
             // Dividindo a string usando vírgula como separador
             String[] separando = produtoString.split(",");
 
             // Pegando a descrição do produto e o valor da PC
-            String descricao = separando[0];
-            double PC = Double.parseDouble(separando[1]);
+            String nome = separando[0];
+            double valor = Double.parseDouble(separando[1]);
 
             // Criando o objeto Produto
-            Produto produto = new Produto(descricao, PC);
+            Produto produto = new Produto(nome, valor);
 
             // Criando uma nova thread para inserir o produto no BD
             new Thread(new Runnable() {
@@ -63,13 +68,27 @@ public class ManipularProdutos {
         }
     }
 
-    public void listarTodosProdutos() {
-        new Thread(new Runnable() {
+    public List<Produto> listarTodosProdutos() {
+        final List<Produto>[] produtos = new List[]{new ArrayList<>()};
+
+        // Alterado as threads para que se aguarde a conclusão da busca para depois fazer return
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                dbProduto.produtoDao().listarTodosProdutos();
+                produtos[0] = produtoDao.listarTodosProdutos();
+                Log.d("ManipularProdutos", "Produtos obtidos: " + produtos[0].size());
             }
-        }).start();
+        });
+        thread.start();
+
+        // Esperando a thread termine suas operações
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("ManipularProdutos", "Tamanho da lista de produtos retornada: " + produtos[0].size());
+        return produtos[0];
     }
 
     public Produto obterProdutoId(int idProduto) {
@@ -81,5 +100,32 @@ public class ManipularProdutos {
             }
         }).start();
         return Produto[0];
+    }
+    public boolean existeProduto(final String nomeProduto) {
+        final boolean[] existe = {false};
+        // Criando uma thread para realizar a consulta
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Produto produto = dbProduto.produtoDao().obterProdutoPorNome(nomeProduto);
+                if (produto != null) {
+                    existe[0] = true;
+                }
+            }
+        });
+
+        // Inicia a execução da thread
+        thread.start();
+
+        // Como a consulta no BD é realizada em paralelo tem que aguardar
+        try {
+            // Aguarda a conclusão da thread antes de continuar
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Retorna o valor verificado
+        return existe[0];
     }
 }

@@ -6,6 +6,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
+import com.example.adrianogcarvalho_appfinal.models.UsuarioComProduto;
 
 import java.util.List;
 
@@ -26,4 +27,8 @@ public interface UsuarioDao {
 
     @Query("SELECT * FROM usuarios WHERE email = :email AND senha = :senha")
     Usuario validarLogin(String email, String senha);
+
+    // Obtendo um usuário com seus produtos
+//    @Query("SELECT * FROM usuarios WHERE id = :idUsuario")
+//    UsuarioComProduto obterUsuarioComProduto(int idUsuario);
 }

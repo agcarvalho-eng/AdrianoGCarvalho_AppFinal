@@ -15,8 +15,8 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_adicionarProdutos"
-        android:title="Adicionar Produtos"
+        android:id="@+id/menu_inserirProduto"
+        android:title="Inserir Novo Produto"
         android:icon="@drawable/adicionar_produtos"
         app:showAsAction="ifRoom" />
 

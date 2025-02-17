@@ -23,4 +23,7 @@ public interface ProdutoDao {
     @Query("SELECT * FROM produtos WHERE id = :idProduto")
     Produto obterProdutoId(int idProduto);
 
+    @Query("SELECT * FROM produtos WHERE nome = :nome")
+    Produto obterProdutoPorNome(String nome);
+
 }
