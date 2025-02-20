@@ -75,6 +75,7 @@ public class CadastroFragment extends Fragment {
                     // Voltando para o fragmento de login
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frameLayout, new LoginFragment())
+                            // Permitindo voltar ao fragmento anterior
                             .addToBackStack(null)
                             .commit();
                 }

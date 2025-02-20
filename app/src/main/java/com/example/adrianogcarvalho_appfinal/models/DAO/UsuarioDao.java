@@ -29,6 +29,6 @@ public interface UsuarioDao {
     Usuario validarLogin(String email, String senha);
 
     // Obtendo um usuário com seus produtos
-//    @Query("SELECT * FROM usuarios WHERE id = :idUsuario")
-//    UsuarioComProduto obterUsuarioComProduto(int idUsuario);
+    @Query("SELECT * FROM usuarios WHERE id = :idUsuario")
+    UsuarioComProduto obterUsuarioComProdutos(int idUsuario);
 }

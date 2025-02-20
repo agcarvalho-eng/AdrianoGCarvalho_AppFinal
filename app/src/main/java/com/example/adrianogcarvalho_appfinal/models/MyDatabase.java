@@ -6,11 +6,12 @@ import androidx.room.RoomDatabase;
 
 import com.example.adrianogcarvalho_appfinal.models.DAO.ProdutoDao;
 import com.example.adrianogcarvalho_appfinal.models.DAO.UsuarioDao;
+import com.example.adrianogcarvalho_appfinal.models.DAO.UsuarioProdutoDao;
 
 @Database(entities = {Usuario.class, Produto.class, UsuarioProduto.class}, version = 1)
 public abstract class MyDatabase extends RoomDatabase{
 
     public abstract UsuarioDao usuarioDao();
     public abstract ProdutoDao produtoDao();
-    //public abstract UsuarioProdutoDao usuarioProdutoDao();
+    public abstract UsuarioProdutoDao usuarioProdutoDao();
 }

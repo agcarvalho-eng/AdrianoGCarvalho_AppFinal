@@ -11,6 +11,7 @@ import com.example.adrianogcarvalho_appfinal.models.DAO.UsuarioProdutoDao;
 import com.example.adrianogcarvalho_appfinal.models.MyDatabase;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
+import com.example.adrianogcarvalho_appfinal.models.UsuarioProduto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,9 @@ public class ManipularProdutos {
                 .fallbackToDestructiveMigration()
                 .build();
 
-        // Inicializando o produtoDao
+        // Inicializando as classes Dao necessárias
         produtoDao = dbProduto.produtoDao();
+        usuarioProdutoDao = dbProduto.usuarioProdutoDao();
     }
     public void inserirProduto(Produto produto) {
         new Thread(new Runnable() {
@@ -38,13 +40,13 @@ public class ManipularProdutos {
         }).start();
     }
 
-    // Método para inserir a lista de produtos no BD
+    // Método para inserir a lista inicial de produtos no BD
     public void inserirListaProdutos(Context context) {
 
         // Lendo o string-array do arquivo strings.xml
         String[] produtos = context.getResources().getStringArray(R.array.produtos);
 
-        // Iterando sobre as strings do array
+        // Iterando sobre os itens do array
         for (String produtoString : produtos) {
 
             // Dividindo a string usando vírgula como separador
@@ -69,6 +71,7 @@ public class ManipularProdutos {
     }
 
     public List<Produto> listarTodosProdutos() {
+        // Lista que receberá a lista de produtos (final para impedir alteração na sua referência)
         final List<Produto>[] produtos = new List[]{new ArrayList<>()};
 
         // Alterado as threads para que se aguarde a conclusão da busca para depois fazer return
@@ -127,5 +130,42 @@ public class ManipularProdutos {
 
         // Retorna o valor verificado
         return existe[0];
+    }
+
+    // Método para listar os produtos escolhidos por um usuário
+    public List<Produto> listarProdutosEscolhidos(int idUsuario) {
+        final List<Produto>[] produtosEscolhidos = new List[]{new ArrayList<>()};
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<UsuarioProduto> escolhas = usuarioProdutoDao.obterProdutosDeUsuario(idUsuario);
+                for (UsuarioProduto escolha : escolhas) {
+                    //Produto produto = produtoDao.obterProdutoId(escolha.getId_produto());
+                    //produtosEscolhidos[0].add(produto);
+                }
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return produtosEscolhidos[0];
+    }
+
+    // Método para salvar as escolhas de produtos pelo usuário
+    public void salvarEscolhaProdutos(List<UsuarioProduto> usuarioProdutos) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (UsuarioProduto usuarioProduto : usuarioProdutos) {
+                    usuarioProdutoDao.inserirUsuarioProduto(usuarioProduto);
+                }
+            }
+        }).start();
     }
 }
