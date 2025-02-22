@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +17,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuarioProduto;
 import com.example.adrianogcarvalho_appfinal.models.SessaoUsuario;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private TextView textViewUsuario;
-    //private ManipularProdutos dbProdutos;
-    //private ManipularUsuarios dbUsuarios;
-    //private ManipularPegadas dbPegadas;
+    private ProgressBar progressBar;
+    private FloatingActionButton botaoFlutuante;
+    private ManipularUsuarioProduto manipularUsuarioProduto;
 
     public HomeFragment() {
 
@@ -54,12 +59,43 @@ public class HomeFragment extends Fragment {
         // Referenciando o textView para exibir nome e aproveitamento escolar
         textViewUsuario = view.findViewById(R.id.textViewUsuario);
 
+        // Inicializando a progress bar para mostrar a evolução da pegada
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setMax(100000);
+
+        // Inicializando a classe ManipularUsuarioProduto
+        manipularUsuarioProduto = new ManipularUsuarioProduto(getContext());
+
+        // Calculando a pegada de carbono atual
+        List<Integer> listaIdsProdutos = manipularUsuarioProduto.listarIdProdutosUsuario(idUsuario);
+        double pegadaCarbono = manipularUsuarioProduto.calcularPegadaUsuario(listaIdsProdutos);
+
         // Exibindo as informações no TextView
-        // COLOCANDO UM PC GENÉRICO
-        double pc = 0.0;
-        String mensagem = "Olá " + nomeUsuario + ", sua pegada de carbono atual é: "
-                + pc;
+        String mensagem = String.format("Olá %s, sua pegada de carbono atual é: %.2f", nomeUsuario, pegadaCarbono);
         textViewUsuario.setText(mensagem);
+
+        // Atualizando a progress bar conforme a pegada de carbono
+        int progresso = (int) pegadaCarbono;
+        if(progresso > 100000) {
+            progresso = 100000;
+        }
+        progressBar.setProgress(progresso);
+        progressBar.setVisibility(View.VISIBLE);
+
+        // Referenciando o botão flutuante
+        botaoFlutuante = view.findViewById(R.id.botaoFlutuante);
+        // Configurando o clique do botão flutuante
+        botaoFlutuante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Quando clicado direciona para DicaFragment
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new DicaFragment())
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
     }
 
     // Método do ciclo de vida do fragmento (quando iniciar o fragmento)

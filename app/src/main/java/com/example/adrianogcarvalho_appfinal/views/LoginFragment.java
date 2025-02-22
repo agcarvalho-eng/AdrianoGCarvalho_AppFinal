@@ -15,14 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
-import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuarios;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuario;
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
 import com.google.android.material.button.MaterialButton;
 
 public class LoginFragment extends Fragment {
     private EditText editTextEmail, editTextSenha;
     private MaterialButton botaoLogin, botaoCadastrar;
-    private ManipularUsuarios manipularUsuarios;
+    private ManipularUsuario manipularUsuario;
 
     public LoginFragment() {
 
@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
         botaoCadastrar = view.findViewById(R.id.botaoCadastrar);
 
         // Estanciando um objeto da classe ManipularUsuario
-        manipularUsuarios = new ManipularUsuarios(getContext());
+        manipularUsuario = new ManipularUsuario(getContext());
 
         // Configurando o botão login
         botaoLogin.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class LoginFragment extends Fragment {
             Usuario usuario = new Usuario(email, senha);
 
             // Validando login na Thread
-            manipularUsuarios.validarLogin(usuario, new Handler(Looper.getMainLooper()) {
+            manipularUsuario.validarLogin(usuario, new Handler(Looper.getMainLooper()) {
                 @Override
                 public void handleMessage(@NonNull Message mensagem) {
                     // Obtendo o resultado retornado pela validação

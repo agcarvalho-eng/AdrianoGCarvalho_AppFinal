@@ -9,11 +9,11 @@ import com.example.adrianogcarvalho_appfinal.models.MyDatabase;
 import com.example.adrianogcarvalho_appfinal.models.SessaoUsuario;
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
 
-public class ManipularUsuarios {
+public class ManipularUsuario {
 
     private MyDatabase dbUsuario;
 
-    public ManipularUsuarios(Context context) {
+    public ManipularUsuario(Context context) {
         // Inicializando o BD
         dbUsuario = Room.databaseBuilder(context, MyDatabase.class, "pegada_carbono")
                 .fallbackToDestructiveMigration()

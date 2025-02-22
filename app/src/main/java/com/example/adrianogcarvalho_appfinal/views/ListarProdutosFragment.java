@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adrianogcarvalho_appfinal.R;
-import com.example.adrianogcarvalho_appfinal.controllers.ManipularProdutos;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularProduto;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.List;
 public class ListarProdutosFragment extends Fragment {
     private RecyclerView recyclerView;
     private MeuAdapter meuAdapter;
-    private ManipularProdutos dbProdutos;
+    private ManipularProduto dbProdutos;
     private List<Produto> listaProdutos;
     private Button botaoVoltarHome;
 
@@ -55,7 +55,7 @@ public class ListarProdutosFragment extends Fragment {
         }
 
         // Iniciando a manipulação dos produtos no BD
-        dbProdutos = new ManipularProdutos(getContext());
+        dbProdutos = new ManipularProduto(getContext());
         listaProdutos = new ArrayList<>();
 
         // Buscando todas os produtos no BD

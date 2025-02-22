@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
-import com.example.adrianogcarvalho_appfinal.controllers.ManipularProdutos;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularProduto;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
 import com.example.adrianogcarvalho_appfinal.models.UsuarioProduto;
 import com.google.android.material.button.MaterialButton;
@@ -27,7 +27,7 @@ public class InserirPCProdutoFragment extends Fragment {
     private LinearLayout linearLayoutProdutos;
     private List<Produto> listaProdutos;
     private ArrayList<Integer> produtosSelecionados;
-    private ManipularProdutos manipularProdutos;
+    private ManipularProduto manipularProduto;
     private int idUsuario;
 
     public InserirPCProdutoFragment(int idUsuario) {
@@ -57,7 +57,7 @@ public class InserirPCProdutoFragment extends Fragment {
         produtosSelecionados = new ArrayList<>();
 
         // Inicializando a manipulação de produtos no BD
-        manipularProdutos = new ManipularProdutos(getContext());
+        manipularProduto = new ManipularProduto(getContext());
 
         // Carregando a lista de produtos do BD
         carregarProdutos();
@@ -79,7 +79,7 @@ public class InserirPCProdutoFragment extends Fragment {
     // Método para carregar os produtos a partir do BD
     private void carregarProdutos() {
         // Recuperando os produtos do BD
-        List<Produto> produtos = manipularProdutos.listarTodosProdutos();
+        List<Produto> produtos = manipularProduto.listarTodosProdutos();
 
         // Adicionando os produtos na lista
         listaProdutos = new ArrayList<>();
@@ -126,7 +126,7 @@ public class InserirPCProdutoFragment extends Fragment {
             }
 
             // Salvando as escolhas no BD
-            manipularProdutos.salvarEscolhaProdutos(usuarioProdutos);
+            manipularProduto.salvarEscolhaProdutos(usuarioProdutos);
 
             // Apresentando a mensagem de sucesso
             Toast.makeText(getContext(), "Produtos selecionados salvos!", Toast.LENGTH_SHORT).show();

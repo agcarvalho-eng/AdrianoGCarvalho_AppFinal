@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
-import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuarios;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularUsuario;
 import com.example.adrianogcarvalho_appfinal.models.Usuario;
 import com.google.android.material.button.MaterialButton;
 
@@ -60,8 +60,8 @@ public class CadastroFragment extends Fragment {
 
                     // Criando um novo usuario e salvando no BD
                     Usuario usuario = new Usuario(nome, email, senha);
-                    ManipularUsuarios manipularUsuarios = new ManipularUsuarios(getContext());
-                    manipularUsuarios.inserirUsuario(usuario);
+                    ManipularUsuario manipularUsuario = new ManipularUsuario(getContext());
+                    manipularUsuario.inserirUsuario(usuario);
 
                     // Exibindo a mensagem de sucesso
                     Toast.makeText(getContext(), "Cadastro realizado com sucesso!",

@@ -14,7 +14,7 @@ public class UsuarioProduto {
     private int id_usuario;
 
     @ColumnInfo(name = "id_produto")
-    private double id_produto;
+    private int id_produto;
 
     // Room exige um construtor padrão
     public UsuarioProduto() {}
@@ -41,11 +41,11 @@ public class UsuarioProduto {
         this.id_usuario = id_usuario;
     }
 
-    public double getId_produto() {
+    public int getId_produto() {
         return id_produto;
     }
 
-    public void setId_produto(double id_produto) {
+    public void setId_produto(int id_produto) {
         this.id_produto = id_produto;
     }
 }

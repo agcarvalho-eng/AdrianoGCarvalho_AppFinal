@@ -13,14 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adrianogcarvalho_appfinal.R;
-import com.example.adrianogcarvalho_appfinal.controllers.ManipularProdutos;
+import com.example.adrianogcarvalho_appfinal.controllers.ManipularProduto;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
 
 public class InserirProdutoFragment extends Fragment {
     private EditText editTextNomeProduto;
     private EditText editTextPCProduto;
     private Button botaoInserirProduto, botaoVoltarHome;
-    private ManipularProdutos dbProdutos;
+    private ManipularProduto dbProdutos;
     private double pcProduto;
 
     public InserirProdutoFragment() {
@@ -36,8 +36,8 @@ public class InserirProdutoFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Inicializando a instância de ManipularProdutos
-        dbProdutos = new ManipularProdutos(getContext());
+        // Inicializando a instância de ManipularProduto
+        dbProdutos = new ManipularProduto(getContext());
 
         // Referenciando os campos de input
         editTextNomeProduto = view.findViewById(R.id.editTextInserirNovoProduto);

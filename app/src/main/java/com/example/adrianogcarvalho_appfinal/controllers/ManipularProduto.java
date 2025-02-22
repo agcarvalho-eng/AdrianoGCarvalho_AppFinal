@@ -10,18 +10,17 @@ import com.example.adrianogcarvalho_appfinal.models.DAO.ProdutoDao;
 import com.example.adrianogcarvalho_appfinal.models.DAO.UsuarioProdutoDao;
 import com.example.adrianogcarvalho_appfinal.models.MyDatabase;
 import com.example.adrianogcarvalho_appfinal.models.Produto;
-import com.example.adrianogcarvalho_appfinal.models.Usuario;
 import com.example.adrianogcarvalho_appfinal.models.UsuarioProduto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManipularProdutos {
+public class ManipularProduto {
     private MyDatabase dbProduto;
     private ProdutoDao produtoDao;
     private UsuarioProdutoDao usuarioProdutoDao;
 
-    public ManipularProdutos(Context context) {
+    public ManipularProduto(Context context) {
         // Inicializando o BD
         dbProduto = Room.databaseBuilder(context, MyDatabase.class, "pegada_carbono")
                 .fallbackToDestructiveMigration()
@@ -30,6 +29,7 @@ public class ManipularProdutos {
         // Inicializando as classes Dao necessárias
         produtoDao = dbProduto.produtoDao();
         usuarioProdutoDao = dbProduto.usuarioProdutoDao();
+
     }
     public void inserirProduto(Produto produto) {
         new Thread(new Runnable() {
@@ -79,7 +79,7 @@ public class ManipularProdutos {
             @Override
             public void run() {
                 produtos[0] = produtoDao.listarTodosProdutos();
-                Log.d("ManipularProdutos", "Produtos obtidos: " + produtos[0].size());
+                Log.d("ManipularProduto", "Produtos obtidos: " + produtos[0].size());
             }
         });
         thread.start();
@@ -90,7 +90,7 @@ public class ManipularProdutos {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.d("ManipularProdutos", "Tamanho da lista de produtos retornada: " + produtos[0].size());
+        Log.d("ManipularProduto", "Tamanho da lista de produtos retornada: " + produtos[0].size());
         return produtos[0];
     }
 
