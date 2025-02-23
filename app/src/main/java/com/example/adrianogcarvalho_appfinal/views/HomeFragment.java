@@ -88,9 +88,9 @@ public class HomeFragment extends Fragment {
         botaoFlutuante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Quando clicado direciona para DicasFragment
+                // Quando clicado direciona para DicaFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout, new DicasFragment())
+                        .replace(R.id.frameLayout, new DicaFragment())
                         .addToBackStack(null)
                         .commit();
 

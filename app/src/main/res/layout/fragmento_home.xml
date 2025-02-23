@@ -3,25 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/lightRed"
         android:titleTextColor="#FFFFFF"
         android:elevation="4dp" />
 
     <TextView
+        android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bem-vindo ao APP de Pegada de Carbono!"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_below="@id/toolbar"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textViewUsuario"
@@ -29,8 +30,9 @@
         android:layout_height="wrap_content"
         android:text="Olá, seu nome!"
         android:textSize="16sp"
+        android:layout_below="@id/textViewTitulo"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center" />
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -40,6 +42,7 @@
         android:max="10000"
         android:visibility="gone"
         style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_below="@id/textViewUsuario"
         android:layout_marginTop="20dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,9 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/play_button"
-        app:backgroundTint="@color/lightBlue"
+        android:backgroundTint="@color/lightBlue"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp" />
+
 </RelativeLayout>
+
