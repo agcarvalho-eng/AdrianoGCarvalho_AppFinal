@@ -72,8 +72,15 @@ public class HomeFragment extends Fragment {
         textViewUsuario.setText(mensagem);
 
         // Definindo o valor máximo da progress bar para mostrar a evolução da pegada
-
-        progressBar.setMax(100000);
+        if (pegadaCarbono >= 0 && pegadaCarbono <= 8000) {
+            progressBar.setMax(15000);
+        } else if (pegadaCarbono > 8000 && pegadaCarbono <= 20000) {
+            progressBar.setMax(25000);
+        } else if (pegadaCarbono > 20000 && pegadaCarbono <= 40000) {
+            progressBar.setMax(50000);
+        } else {
+            progressBar.setMax(100000);
+        }
 
         // Atualizando a progress bar conforme a pegada de carbono
         int progresso = (int) pegadaCarbono;
