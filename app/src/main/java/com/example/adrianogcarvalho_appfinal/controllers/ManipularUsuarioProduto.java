@@ -22,12 +22,12 @@ public class ManipularUsuarioProduto {
     private double valorPegada = 0;
 
     public ManipularUsuarioProduto(Context context) {
-        // Inicializando o BD
+        // Criando e configurando uma instância do BD
         dbProduto = Room.databaseBuilder(context, MyDatabase.class, "pegada_carbono")
                 .fallbackToDestructiveMigration()
                 .build();
 
-        // Inicializando as classes Dao necessárias
+        // Obtendo as instâncias dos objetos Dao
         produtoDao = dbProduto.produtoDao();
         usuarioProdutoDao = dbProduto.usuarioProdutoDao();
     }
@@ -36,13 +36,13 @@ public class ManipularUsuarioProduto {
     public List<Integer> listarIdProdutosUsuario(int idUsuario) {
         final List<Integer>[] idProdutos = new List[]{new ArrayList<>()};
 
-        // Criando uma thread para realizar a consulta
+        // Instanciando uma thread para realizar a consulta
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 // Obtendo os relacionamentos de produtos do usuário
                 List<UsuarioProduto> usuarioProdutos = usuarioProdutoDao.obterProdutosDeUsuario(idUsuario);
-                // Iterando sobre a lista de UsuarioProduto e adicionando os IDs dos produtos
+                // Iterando sobre a lista de usuarioProdutos e adicionando os IDs dos produtos
                 for (UsuarioProduto usuarioProduto : usuarioProdutos) {
                     idProdutos[0].add(usuarioProduto.getId_produto());
                 }
@@ -63,9 +63,8 @@ public class ManipularUsuarioProduto {
 
     // Método para listar os valores dos produtos associados a um usuário, dado uma lista de ids de produtos
     public double calcularPegadaUsuario(List<Integer> idProdutos) {
-        //final List<Double>[] valoresProdutos = new List[]{new ArrayList<>()};
 
-        // Criando uma thread para realizar a consulta
+        // Instanciando uma thread para realizar a consulta
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -74,9 +73,8 @@ public class ManipularUsuarioProduto {
                     // Obtendo o produto com o id fornecido
                     Produto produto = produtoDao.obterProdutoId(idProduto);
 
-                    // Adicionando o valor do produto na lista de valores
+                    // Calculando o valor da pegada dos produtos do usuário
                     if (produto != null) {
-                        //valoresProdutos[0].add(produto.getValor());
                         valorPegada += produto.getValor();
                     }
                 }

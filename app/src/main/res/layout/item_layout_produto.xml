@@ -19,7 +19,7 @@
             android:id="@+id/textViewNomeProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome do Produto"
+            android:text="@string/nome_do_produto2"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="16sp" />
 
@@ -27,7 +27,7 @@
             android:id="@+id/textViewPCProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PC"
+            android:text="@string/pc"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="16sp" />
     </LinearLayout>

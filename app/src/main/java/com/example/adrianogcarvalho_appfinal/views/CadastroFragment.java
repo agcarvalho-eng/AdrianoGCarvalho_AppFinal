@@ -34,7 +34,7 @@ public class CadastroFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Referenciando os componentes do layout
+        // Referenciando os componentes de interface gráfica
         editCadastroNome = view.findViewById(R.id.editCadastroNome);
         editCadastroEmail = view.findViewById(R.id.editCadastroEmail);
         editCadastroSenha = view.findViewById(R.id.editCadastroSenha);
@@ -58,7 +58,7 @@ public class CadastroFragment extends Fragment {
                     // MONTAR A CONSULTA AQUI
                     // /////////////////////////////////////////////////////
 
-                    // Criando um novo usuario e salvando no BD
+                    // Instanciando um usuario e manipular usuário para salvar no BD
                     Usuario usuario = new Usuario(nome, email, senha);
                     ManipularUsuario manipularUsuario = new ManipularUsuario(getContext());
                     manipularUsuario.inserirUsuario(usuario);
@@ -75,7 +75,7 @@ public class CadastroFragment extends Fragment {
                     // Voltando para o fragmento de login
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frameLayout, new LoginFragment())
-                            // Permitindo voltar ao fragmento anterior
+                            // Permitindo voltar ao fragmento
                             .addToBackStack(null)
                             .commit();
                 }

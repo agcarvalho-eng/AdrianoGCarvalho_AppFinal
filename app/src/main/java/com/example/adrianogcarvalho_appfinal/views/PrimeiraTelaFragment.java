@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.example.adrianogcarvalho_appfinal.R;
 
 public class PrimeiraTelaFragment extends Fragment {
+    private TextView descricaoApp;
+    private Button botaoLogin, botaoExplicacao;
 
     public PrimeiraTelaFragment() {
 
@@ -28,27 +30,29 @@ public class PrimeiraTelaFragment extends Fragment {
     }
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-            // Configurando o título e a descrição do app
-            TextView titulo = view.findViewById(R.id.tituloTela1);
-            TextView descricaoApp = view.findViewById(R.id.descricaoApp);
+
+            // Referenciando os componentes de interface gráfica
+            descricaoApp = view.findViewById(R.id.descricaoApp);
+            botaoLogin = view.findViewById(R.id.botaoLogin);
+            botaoExplicacao = view.findViewById(R.id.botaoExplicacao);
+
+            // Atribuindo o texto ao componente para exibir
             descricaoApp.setText(getString(R.string.descricao_app));
 
             // Configurando o botão para ir para o login
-            Button botaoLogin = view.findViewById(R.id.botaoLogin);
             botaoLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Navegando para o fragmento login
                     getFragmentManager().beginTransaction()
                             .replace(R.id.frameLayout, new LoginFragment())
-                            // Permitindo voltar ao fragmento anterior
+                            // Permitindo voltar ao fragmento
                             .addToBackStack(null)
                             .commit();
 
                 }
             });
-            // Configurando botão para alertDialog (explicação)
-            Button botaoExplicacao = view.findViewById(R.id.botaoExplicacao);
+            // Configurando botão para alertDialog (Explicação)
             botaoExplicacao.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

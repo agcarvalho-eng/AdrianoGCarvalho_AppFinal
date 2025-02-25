@@ -31,10 +31,9 @@ public class InserirPCProdutoFragment extends Fragment {
     private int idUsuario;
 
     public InserirPCProdutoFragment(int idUsuario) {
-        // Recebe o ID do usuário como parâmetro
+        // Recebe o id do usuário como parâmetro
         this.idUsuario = idUsuario;
     }
-
 
     @Nullable
     @Override
@@ -47,16 +46,14 @@ public class InserirPCProdutoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // Referenciando os componentes do layout
+        // Referenciando os componentes de interface gráfica
         botaoSalvar = view.findViewById(R.id.botaoSalvarProdutosInserirPC);
-
-        // Inicializando a variável para o LinearLayout onde os checkboxes serão adicionados
         linearLayoutProdutos = view.findViewById(R.id.linearLayoutProdutos);
 
-        // Inicializando a lista de produtos selecionados
+        // Instaciando a lista de produtos selecionados
         produtosSelecionados = new ArrayList<>();
 
-        // Inicializando a manipulação de produtos no BD
+        // Instaciando manipular produtos
         manipularProduto = new ManipularProduto(getContext());
 
         // Carregando a lista de produtos do BD
@@ -81,14 +78,16 @@ public class InserirPCProdutoFragment extends Fragment {
         // Recuperando os produtos do BD
         List<Produto> produtos = manipularProduto.listarTodosProdutos();
 
-        // Adicionando os produtos na lista
+        // Instanciando um ArrayList vazio e atribuindo à listaProdutos
         listaProdutos = new ArrayList<>();
+
+        // Adicionando os produtos vindos do BD na listaProdutos
         for (Produto produto : produtos) {
             listaProdutos.add(produto);
 
-            // Criando um checkbox para cada produto
+            // Instanciando um checkbox para cada produto
             CheckBox checkBox = new CheckBox(getContext());
-            // Nome do produto
+            // Definindo o nome do produto para o checkbox
             checkBox.setText(produto.getNome());
             // Armazenando o produto no checbox
             checkBox.setTag(produto);
@@ -97,6 +96,7 @@ public class InserirPCProdutoFragment extends Fragment {
 
             // Configurando o evento de clique para atualizar o seleção
             checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+                // Método chamado quando o estado do checkbox muda (true ou false)
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     Produto produtoSelecionado = (Produto) buttonView.getTag();
@@ -118,9 +118,11 @@ public class InserirPCProdutoFragment extends Fragment {
             // Caso nenhum produto tenha sido selecionado
             Toast.makeText(getContext(), "Nenhum produto selecionado!", Toast.LENGTH_SHORT).show();
         } else {
-            // Criando a lista de objetos UsuarioProduto para salvar no BD
+            // Criando uma lista de usuarioProdutos
             List<UsuarioProduto> usuarioProdutos = new ArrayList<>();
+            //
             for (Integer idProduto : produtosSelecionados) {
+                //Instanciando usuarioProduto
                 UsuarioProduto usuarioProduto = new UsuarioProduto(idUsuario, idProduto);
                 usuarioProdutos.add(usuarioProduto);
             }

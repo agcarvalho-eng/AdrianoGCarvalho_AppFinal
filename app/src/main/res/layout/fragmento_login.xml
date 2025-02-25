@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fazendo Login"
+        android:text="@string/fazendo_login"
         android:textStyle="italic"
         android:textSize="20sp"
         android:layout_marginTop="20dp" />
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextEmail"
-        android:hint="Digite seu email"
+        android:hint="@string/digite_seu_email"
         android:inputType="textEmailAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
             android:id="@+id/editTextSenha"
-        android:hint="Digite sua senha"
+        android:hint="@string/digite_sua_senha"
         android:inputType="textPassword"
         android:layout_marginTop="16dp" />
 
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/botaoLogin"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_gravity="center"
         android:layout_marginTop="32dp" />
 
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/botaoCadastrar"
-        android:text="Cadastrar"
+        android:text="@string/cadastrar"
         android:layout_gravity="center"
         android:layout_marginTop="32dp" />
 </LinearLayout>

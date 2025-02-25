@@ -42,23 +42,24 @@ public class ListarProdutosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // Inicializando o recyclerView e o botão
+        // Referenciando os componentes de interface gráfica
         recyclerView = view.findViewById(R.id.recyclerViewProdutos);
         botaoVoltarHome = view.findViewById(R.id.botaoVoltarHome);
 
         // Verificando se o recyclerView não está vazio
         if(recyclerView != null) {
+            // Configurando RecyclerView usar LinearLayoutManager (organizado lista vertical)
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         } else {
             Toast.makeText(getContext(), "RecyclerView não encontrado!",
                     Toast.LENGTH_SHORT).show();
         }
 
-        // Iniciando a manipulação dos produtos no BD
+        // Instaciando manipular produtos
         dbProdutos = new ManipularProduto(getContext());
         listaProdutos = new ArrayList<>();
 
-        // Buscando todas os produtos no BD
+        // Buscando todos os produtos no BD
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -68,13 +69,15 @@ public class ListarProdutosFragment extends Fragment {
                 // Log para verificar se os produtos foram carregados no BD
                 Log.d("ListarProdutosFragment", "Lista de produtos carregada. Tamanho: " + listaProdutos.size());
 
-                // Atualizando a UI no thread principal após a busca no BD
+                // Atualizando a UI na thread principal após a busca no BD
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         // Criando e configurando o Adapter
                         // Log de confirmação de configuração do Adapter
                         Log.d("ListarProdutosFragment", "Criando o Adapter com " + listaProdutos.size() + " produtos.");
+
+                        // Instanciando o Adapter
                         meuAdapter = new MeuAdapter(listaProdutos);
                         recyclerView.setAdapter(meuAdapter);
                     }

@@ -39,13 +39,13 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Referenciando os componentes do layout
+        // Referenciando os componentes de interface gráfica
         editTextEmail = view.findViewById(R.id.editTextEmail);
         editTextSenha = view.findViewById(R.id.editTextSenha);
         botaoLogin = view.findViewById(R.id.botaoLogin);
         botaoCadastrar = view.findViewById(R.id.botaoCadastrar);
 
-        // Estanciando um objeto da classe ManipularUsuario
+        // Instanciando um objeto da classe ManipularUsuario
         manipularUsuario = new ManipularUsuario(getContext());
 
         // Configurando o botão login
@@ -78,10 +78,10 @@ public class LoginFragment extends Fragment {
             Toast.makeText(getActivity(), "Precisa preencher todos os campos!",
                     Toast.LENGTH_SHORT).show();
         } else {
-            // Criando nova instância da classe Usuário
+            // Instanciando a classe Usuário
             Usuario usuario = new Usuario(email, senha);
 
-            // Validando login na Thread
+            // Validando login na Thread (Looper.getMainLooper() valida na thread principal)
             manipularUsuario.validarLogin(usuario, new Handler(Looper.getMainLooper()) {
                 @Override
                 public void handleMessage(@NonNull Message mensagem) {
@@ -98,6 +98,8 @@ public class LoginFragment extends Fragment {
                     } else  {
                         Toast.makeText(getActivity(), "Usuário não encontrado!",
                                 Toast.LENGTH_SHORT).show();
+                        editTextEmail.setText("");
+                        editTextSenha.setText("");
                     }
 
                 }

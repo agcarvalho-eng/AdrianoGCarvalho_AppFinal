@@ -49,19 +49,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        // Referenciando os componentes de interface gráfica
+        textViewUsuario = view.findViewById(R.id.textViewUsuario);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        progressBar = view.findViewById(R.id.progressBar);
+
         // Habilitando o menu para este fragmento
         setHasOptionsMenu(true);
 
         // Configurando a toolbar para que exista apenas neste fragmento
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-
-        // Referenciando o textView para exibir nome e aproveitamento escolar
-        textViewUsuario = view.findViewById(R.id.textViewUsuario);
-
-        // Inicializando a progress bar para mostrar a evolução da pegada
-        progressBar = view.findViewById(R.id.progressBar);
-        progressBar.setMax(100000);
 
         // Inicializando a classe ManipularUsuarioProduto
         manipularUsuarioProduto = new ManipularUsuarioProduto(getContext());
@@ -71,8 +68,12 @@ public class HomeFragment extends Fragment {
         double pegadaCarbono = manipularUsuarioProduto.calcularPegadaUsuario(listaIdsProdutos);
 
         // Exibindo as informações no TextView
-        String mensagem = String.format("Olá %s, sua pegada de carbono atual é: %.2f", nomeUsuario, pegadaCarbono);
+        String mensagem = String.format("Olá %s, sua pegada de carbono atual é: %.2f.", nomeUsuario, pegadaCarbono);
         textViewUsuario.setText(mensagem);
+
+        // Definindo o valor máximo da progress bar para mostrar a evolução da pegada
+
+        progressBar.setMax(100000);
 
         // Atualizando a progress bar conforme a pegada de carbono
         int progresso = (int) pegadaCarbono;

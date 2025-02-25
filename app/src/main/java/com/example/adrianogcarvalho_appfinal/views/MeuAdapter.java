@@ -25,10 +25,8 @@ public class MeuAdapter extends RecyclerView.Adapter<MeuAdapter.MeuViewHolder> {
         View itemView = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_layout_produto, parent, false);
 
-        // Criando e retornando o ViewHolder
+        // Instanciando e retornando o ViewHolder
         return new MeuViewHolder(itemView);
-
-
     }
 
     @Override
@@ -57,7 +55,7 @@ public class MeuAdapter extends RecyclerView.Adapter<MeuAdapter.MeuViewHolder> {
         public MeuViewHolder(View itemView) {
             super(itemView);
 
-            // Inicializando as views do item
+            // Referenciando os componentes de interface gráfica
             nomeProduto = itemView.findViewById(R.id.textViewNomeProduto);
             pcProduto = itemView.findViewById(R.id.textViewPCProduto);
         }

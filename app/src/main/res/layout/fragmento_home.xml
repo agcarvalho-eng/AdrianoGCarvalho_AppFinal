@@ -17,7 +17,7 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo ao APP de Pegada de Carbono!"
+        android:text="@string/bem_vindo_ao_app_de_pegada_de_carbono"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_below="@id/toolbar"
@@ -28,10 +28,22 @@
         android:id="@+id/textViewUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Olá, seu nome!"
-        android:textSize="16sp"
+        android:text="@string/ola_seu_nome"
+        android:textSize="20sp"
+        android:textStyle="italic"
         android:layout_below="@id/textViewTitulo"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textViewProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gráfico de evolução de sua pegada:"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_below="@id/textViewUsuario"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
@@ -42,8 +54,8 @@
         android:max="10000"
         android:visibility="gone"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_below="@id/textViewUsuario"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/textViewProgressBar"
+        android:layout_marginTop="30dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/botaoFlutuante"

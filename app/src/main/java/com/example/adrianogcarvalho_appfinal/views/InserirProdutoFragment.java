@@ -36,10 +36,10 @@ public class InserirProdutoFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Inicializando a instância de ManipularProduto
+        // Instanciando ManipularProduto
         dbProdutos = new ManipularProduto(getContext());
 
-        // Referenciando os campos de input
+        // Referenciando os componentes de interface gráfica
         editTextNomeProduto = view.findViewById(R.id.editTextInserirNovoProduto);
         editTextPCProduto = view.findViewById(R.id.editTextPCNovoProduto);
         botaoInserirProduto = view.findViewById(R.id.buttonInserirProduto);
@@ -71,7 +71,7 @@ public class InserirProdutoFragment extends Fragment {
                     Toast.makeText(getActivity(), "Produto já cadastrado!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    // Criando o objeto Produto e inserindo no BD
+                    // Instanciando o Produto e inserindo no BD
                     Produto produto = new Produto(nomeProduto, pcProduto);
                     dbProdutos.inserirProduto(produto);
 

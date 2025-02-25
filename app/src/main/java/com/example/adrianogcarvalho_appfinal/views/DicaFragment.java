@@ -31,20 +31,22 @@ public class DicaFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Referência para a dica
+        // Referenciando os componentes de interface gráfica
         textViewDicas = view.findViewById(R.id.textViewDicas);
         botaoVoltarHome = view.findViewById(R.id.botaoVoltarHome);
 
         // Definindo a dica que está no strings.xml
         textViewDicas.setText(getString(R.string.dicas));
 
-        // Configuração do botão de retorno
-        botaoVoltarHome.setOnClickListener(v -> {
-            // Trocar para o fragmento HomeFragment
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout, new HomeFragment())
-                    .addToBackStack(null)
-                    .commit();
+        // Configurando o botão de voltar para o HomeFragment
+        botaoVoltarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retornando para o HomeFragment
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new HomeFragment())
+                        .commit();
+            }
         });
     }
 }

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dicas redução pegada de carbono:"
+        android:text="@string/dicas_redu_o_pegada_de_carbono"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="20dp" />
@@ -19,13 +19,13 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginBottom="24dp"
-        android:text="Aqui será exibida a dica sobre redução da pegada de carbono." />
+        android:text="@string/aqui_sera_exibida_a_dica_sobre_reducao_da_pegada_de_carbono" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/botaoVoltarHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voltar para a Home"
+        android:text="@string/voltar_para_a_home"
         android:layout_gravity="center" />
 
 </LinearLayout>

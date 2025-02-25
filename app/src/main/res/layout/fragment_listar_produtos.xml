@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista de Produtos"
+        android:text="@string/lista_de_produtos"
         android:textStyle="italic"
         android:textSize="20sp"
         android:layout_marginTop="20dp" />
@@ -24,7 +24,7 @@
         android:id="@+id/botaoVoltarHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voltar para Home"
+        android:text="@string/voltar_para_home3"
         android:layout_gravity="center"
         android:layout_marginTop="20dp" />
 </LinearLayout>

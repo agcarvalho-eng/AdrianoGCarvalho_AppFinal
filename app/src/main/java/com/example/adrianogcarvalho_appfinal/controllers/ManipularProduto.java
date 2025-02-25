@@ -21,7 +21,7 @@ public class ManipularProduto {
     private UsuarioProdutoDao usuarioProdutoDao;
 
     public ManipularProduto(Context context) {
-        // Inicializando o BD
+        // Criando e configurando uma instância do BD
         dbProduto = Room.databaseBuilder(context, MyDatabase.class, "pegada_carbono")
                 .fallbackToDestructiveMigration()
                 .build();

@@ -14,7 +14,7 @@ public class ManipularUsuario {
     private MyDatabase dbUsuario;
 
     public ManipularUsuario(Context context) {
-        // Inicializando o BD
+        // Criando e configurando uma instância do BD
         dbUsuario = Room.databaseBuilder(context, MyDatabase.class, "pegada_carbono")
                 .fallbackToDestructiveMigration()
                 .build();
@@ -53,7 +53,7 @@ public class ManipularUsuario {
         final String emailUsuario = usuario.getEmail();
         final String senhaUsuario = usuario.getSenha();
 
-        // Criando uma nova Thread para consultar o BD
+        // Instanciando uma nova Thread para consultar o BD
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -61,7 +61,7 @@ public class ManipularUsuario {
                 // Chamando o Dao para fazer a consulta
                 Usuario usuarioResultado = dbUsuario.usuarioDao().validarLogin(emailUsuario, senhaUsuario);
 
-                // Criando um objeto mensagem para enviar para o Handler (cominicação entre Threads)
+                // Criando um objeto mensagem para enviar para o Handler (comunicação entre Threads)
                 Message mensagem = handler.obtainMessage();
                 if (usuarioResultado != null) {
                     // Guardando as informações do usuário na "sessão"

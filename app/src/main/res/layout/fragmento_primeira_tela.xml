@@ -7,13 +7,12 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tituloTela1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/darkBlue"
-        android:text="APP Pegada Carbono"
+        android:text="@string/app_pegada_carbono"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
@@ -29,7 +28,7 @@
         android:id="@+id/botaoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir para Login"
+        android:text="@string/ir_para_login"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
@@ -37,7 +36,7 @@
         android:id="@+id/botaoExplicacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Funcionamento"
+        android:text="@string/funcionamento"
         android:layout_gravity="center"
         />
 </LinearLayout>
